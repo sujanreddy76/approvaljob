@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'java-label'
+        label 'java-slave'
     }
     stages {
         stage('Build') {
@@ -24,6 +24,11 @@ pipeline {
             }
         }
          stage('ProdDeploy') {
+            input {
+                message "Do you want to deploy to Prod environment?"
+                ok "Yes"
+                submitter "sujanacademy, mahadev"
+            }
             steps {
                 echo "Deploying the project to Prod environment"
             }
